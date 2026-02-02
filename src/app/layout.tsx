@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-charcoal">{children}</body>
+      <body className="bg-charcoal" style={{ backgroundColor: "#0f0f0f" }}>
+        {children}
+      </body>
     </html>
   );
 }

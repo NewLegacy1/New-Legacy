@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 export function Card({
   className,
+  style,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
@@ -11,6 +12,11 @@ export function Card({
         "rounded-2xl border border-ash-gray/20 bg-charcoal/80 backdrop-blur-sm",
         className
       )}
+      style={{
+        backgroundColor: "rgba(15, 15, 15, 0.8)",
+        border: "1px solid rgba(255, 255, 255, 0.12)",
+        ...style,
+      }}
       {...props}
     />
   );

@@ -223,11 +223,11 @@ export default function IntakePage() {
         <div className="pointer-events-none absolute -top-24 right-0 h-1/2 w-1/2 rounded-full bg-phoenix-gold/10 blur-[150px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-1/3 w-1/2 rounded-full bg-sunset-orange/10 blur-[150px]" />
 
-        <div className="container mx-auto px-4 pb-24 pt-28">
+        <div
+          className="container mx-auto px-4 pb-24"
+          style={{ paddingTop: 75 }}
+        >
           <header className="mx-auto max-w-3xl text-center">
-            <p className="text-sm uppercase tracking-[0.3em] text-phoenix-gold/70">
-              Client Intake
-            </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               Let’s build your next website the right way.
             </h1>
