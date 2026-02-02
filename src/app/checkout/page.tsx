@@ -62,6 +62,7 @@ export default function CheckoutPage() {
     "features"
   );
   const [bundleAddonsOpen, setBundleAddonsOpen] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const totals = useMemo(() => {
     if (selectedPlan === "bundle") {
@@ -599,12 +600,56 @@ export default function CheckoutPage() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    console.log(selectionPayload);
+                  disabled={isRedirecting}
+                  onClick={async () => {
+                    if (isRedirecting) return;
+                    setIsRedirecting(true);
+                    try {
+                      const selectedAddonObjects =
+                        selectedPlan === "bundle"
+                          ? []
+                          : addons
+                              .filter((a) => selectedAddons.includes(a.id))
+                              .map((a) => ({
+                                id: a.id,
+                                name: a.name,
+                                setup: a.setup,
+                                monthly: a.monthly,
+                              }));
+
+                      const res = await fetch("/api/stripe/checkout", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          plan: selectedPlan,
+                          addons: selectedAddonObjects,
+                          setupPrice: totals.setup,
+                          monthlyPrice: totals.monthly,
+                        }),
+                      });
+
+                      const data = (await res.json()) as
+                        | { url: string }
+                        | { error: string };
+
+                      if (!res.ok || !("url" in data)) {
+                        throw new Error(
+                          "error" in data ? data.error : "Stripe error"
+                        );
+                      }
+
+                      window.location.href = data.url;
+                    } catch (err) {
+                      console.error(err);
+                      alert(
+                        "Checkout failed to start. Please try again in a moment."
+                      );
+                      setIsRedirecting(false);
+                    }
                   }}
                   className="btn-primary mt-4 w-full"
                 >
-                  Continue to Checkout
+                  {isRedirecting ? "Redirecting…" : "Continue to Checkout"}
                 </button>
                 <p className="mt-3 text-xs text-ash-gray">
                   No long-term contract. You’re always in control.

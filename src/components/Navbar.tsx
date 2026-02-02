@@ -8,6 +8,7 @@ const navItems = [
   { name: "PROCESS", href: "#automation" },
   { name: "WORK", href: "#clients" },
   { name: "ABOUT", href: "#why-us" },
+  { name: "INTAKE", href: "/intake" },
   { name: "CONTACT", href: "#case-studies" },
   {
     name: "CONTACT",
@@ -46,7 +47,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center justify-center flex-grow gap-8">
             {navItems.map((item) => (
               <a
-                key={item.name}
+                key={`${item.name}-${item.href}`}
                 href={item.href}
                 target={item.isButton ? "_blank" : undefined}
                 rel={item.isButton ? "noopener noreferrer" : undefined}
@@ -72,10 +73,18 @@ export default function Navbar() {
       </nav>
 
       <div className={`mobile-menu ${menuOpen ? "visible" : "hidden"}`}>
+        <button
+          type="button"
+          aria-label="Close menu"
+          className="absolute right-6 top-6 rounded-full border border-ash-gray/20 bg-charcoal/70 p-3 text-pure-white hover:border-phoenix-gold/40"
+          onClick={() => setMenuOpen(false)}
+        >
+          <X size={24} />
+        </button>
         <div className="flex flex-col items-center space-y-8">
           {navItems.map((item) => (
             <a
-              key={item.name}
+              key={`${item.name}-${item.href}`}
               href={item.href}
               target={item.isButton ? "_blank" : undefined}
               rel={item.isButton ? "noopener noreferrer" : undefined}
