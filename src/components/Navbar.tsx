@@ -76,7 +76,7 @@ export default function Navbar() {
           </div>
 
           <a
-            href="https://crm-kjw72gfn0-new-legacys-projects.vercel.app/login"
+            href="https://crm-mauve-six.vercel.app/login"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:block font-syne text-sm tracking-wider transition-colors duration-300 gradient-text hover:opacity-80 ml-4"
@@ -146,7 +146,7 @@ export default function Navbar() {
             )
           ))}
           <a
-            href="https://crm-kjw72gfn0-new-legacys-projects.vercel.app/login"
+            href="https://crm-mauve-six.vercel.app/login"
             target="_blank"
             rel="noopener noreferrer"
             className="font-syne text-xl tracking-wider transition-colors duration-300 gradient-text hover:opacity-80"
