@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
         price_data: {
-          currency: "usd",
+          currency: "cad",
           product_data: {
             name: body.plan === "bundle" ? "Growth System Bundle (Setup)" : "Custom Website Build (Setup)",
           },
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       },
       {
         price_data: {
-          currency: "usd",
+          currency: "cad",
           product_data: {
             name: body.plan === "bundle" ? "Growth System Bundle (Monthly)" : "Custom Website Build (Monthly)",
           },
@@ -71,7 +71,7 @@ export async function POST(req: Request) {
       if (addon.setup > 0) {
         line_items.push({
           price_data: {
-            currency: "usd",
+            currency: "cad",
             product_data: { name: `${addon.name} (Setup)` },
             unit_amount: Math.round(addon.setup * 100),
           },
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
       if (addon.monthly > 0) {
         line_items.push({
           price_data: {
-            currency: "usd",
+            currency: "cad",
             product_data: { name: `${addon.name} (Monthly)` },
             unit_amount: Math.round(addon.monthly * 100),
             recurring: { interval: "month" },

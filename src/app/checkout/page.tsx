@@ -50,8 +50,8 @@ const bundleIncludes = [
   "Lead Activity Dashboard",
 ];
 
-const bundlePricing = { setup: 497, monthly: 99 };
-const websitePricing = { setup: 397, monthly: 19 };
+const bundlePricing = { setup: 699, monthly: 99 };
+const websitePricing = { setup: 499, monthly: 99 };
 
 const currency = (amount: number) => `$${amount.toFixed(0)}`;
 
