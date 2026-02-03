@@ -51,7 +51,7 @@ const bundleIncludes = [
 ];
 
 const bundlePricing = { setup: 699, monthly: 99 };
-const websitePricing = { setup: 499, monthly: 99 };
+const websitePricing = { setup: 499, monthly: 29 };
 
 const currency = (amount: number) => `$${amount.toFixed(0)}`;
 
