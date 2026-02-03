@@ -27,7 +27,7 @@ export default function StartNow() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6">
               READY TO <span className="gradient-text">BUILD IT RIGHT?</span>
             </h2>
-            <p className="text-ash-gray text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+            <p className="text-ash-gray text-base sm:text-lg md:text-xl mb-10 max-w-2xl mx-auto">
               If your website looks good but your systems feel messy, we can
               fix both — and make everything measurable.
             </p>

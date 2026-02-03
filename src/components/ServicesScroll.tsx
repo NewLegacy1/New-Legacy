@@ -55,6 +55,7 @@ export default function ServicesScroll() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lastScrollYRef = useRef(0);
   const autoAdvanceRef = useRef(false);
   const upSnapRef = useRef(false);
@@ -137,6 +138,111 @@ export default function ServicesScroll() {
       if (rafId) window.cancelAnimationFrame(rafId);
     };
   }, []);
+
+  useEffect(() => {
+    // Mobile needs internal scrolling to reveal full images/content.
+    // Use a true "mobile" breakpoint so half-sized desktop windows don't flip layouts.
+    const mq = window.matchMedia("(max-width: 767px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+
+  // Mobile experience: stacked cards (no scroll-jacking / no clipped glows).
+  if (isMobile) {
+    return (
+      <section id="services" className="relative bg-charcoal">
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4">
+              SYSTEMS BUILT FOR
+              <br />
+              <span className="gradient-text">GROWTH.</span>
+            </h2>
+            <p className="text-ash-gray text-lg md:text-xl">
+              Explore the systems we build.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {SERVICES.map((svc) => (
+              <div
+                key={svc.title}
+                className="relative bg-charcoal/60 backdrop-blur-sm rounded-2xl p-6"
+              >
+                <h3 className="text-2xl mb-3 text-pure-white">{svc.title}</h3>
+                <p
+                  className="text-ash-gray mb-5"
+                  style={{ fontSize: 14, lineHeight: "20px" }}
+                >
+                  {svc.body}
+                </p>
+                <ul
+                  className="space-y-2 text-ash-gray border-l border-ash-gray/20 pl-4"
+                  style={{ fontSize: 14, lineHeight: "20px" }}
+                >
+                  {svc.bullets.map((bullet) => (
+                    <li key={bullet}>
+                      <span
+                        className="gradient-text"
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(135deg, #F5C255, #E58A40)",
+                          WebkitBackgroundClip: "text",
+                          backgroundClip: "text",
+                          color: "transparent",
+                        }}
+                      >
+                        {bullet}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {svc.imageSrc ? (
+                  <div className="mt-8 relative z-0 overflow-visible">
+                    <div
+                      className="absolute -inset-10 rounded-3xl pointer-events-none"
+                      style={{
+                        background:
+                          "radial-gradient(circle at center, rgba(245,194,85,0.55), rgba(229,138,64,0.28) 55%, rgba(229,138,64,0) 75%)",
+                        filter: "blur(45px)",
+                        opacity: 1,
+                        zIndex: 0,
+                      }}
+                    />
+                    <img
+                      src={svc.imageSrc}
+                      alt={`${svc.title} preview`}
+                      className="relative z-10 w-full rounded-xl object-contain"
+                      style={{
+                        maxHeight: 520,
+                        filter:
+                          "drop-shadow(0 0 26px rgba(245,194,85,0.35)) drop-shadow(0 0 60px rgba(229,138,64,0.25))",
+                      }}
+                    />
+                  </div>
+                ) : null}
+
+                <div className="mt-8">
+                  <a
+                    href={CALENDLY_CONSULTATION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary inline-flex items-center"
+                    style={{ whiteSpace: "nowrap" }}
+                  >
+                    BOOK A CONSULTATION
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
 
   return (
