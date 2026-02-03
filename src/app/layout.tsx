@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description:
     "New Legacy AI - Custom AI agents that handle your calls, texts, emails, and bookings — so you can scale without the stress.",
   icons: {
-    icon: [{ url: "/phoenix-icon.svg", type: "image/svg+xml" }],
-    shortcut: [{ url: "/phoenix-icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/new-legacy-logo.png", type: "image/png" }],
+    shortcut: [{ url: "/new-legacy-logo.png", type: "image/png" }],
   },
 };
 
