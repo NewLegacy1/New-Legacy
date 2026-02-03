@@ -171,16 +171,13 @@ export default function ServicesScroll() {
                 key={svc.title}
                 className="relative bg-charcoal/60 backdrop-blur-sm rounded-2xl p-6"
               >
-                <h3 className="text-2xl mb-3 text-pure-white">{svc.title}</h3>
-                <p
-                  className="text-ash-gray mb-5"
-                  style={{ fontSize: 14, lineHeight: "20px" }}
-                >
+                <h3 className="text-3xl mb-3 text-pure-white">{svc.title}</h3>
+                <p className="text-ash-gray mb-5 text-base leading-relaxed">
                   {svc.body}
                 </p>
                 <ul
                   className="space-y-2 text-ash-gray border-l border-ash-gray/20 pl-4"
-                  style={{ fontSize: 14, lineHeight: "20px" }}
+                  style={{ fontSize: 15, lineHeight: "22px" }}
                 >
                   {svc.bullets.map((bullet) => (
                     <li key={bullet}>
@@ -225,16 +222,32 @@ export default function ServicesScroll() {
                   </div>
                 ) : null}
 
-                <div className="mt-8">
-                  <a
-                    href={CALENDLY_CONSULTATION_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-secondary inline-flex items-center"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    BOOK A CONSULTATION
-                  </a>
+                <div className="mt-12 flex justify-center">
+                  <div className="relative inline-block z-0 overflow-visible">
+                    <div
+                      className="absolute -inset-8 rounded-full pointer-events-none"
+                      style={{
+                        background:
+                          "radial-gradient(circle at center, rgba(245,194,85,0.7), rgba(229,138,64,0.35) 55%, rgba(229,138,64,0) 75%)",
+                        filter: "blur(28px)",
+                        opacity: 1,
+                        zIndex: 0,
+                      }}
+                    />
+                    <a
+                      href={CALENDLY_CONSULTATION_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary inline-flex items-center justify-center relative z-10"
+                      style={{
+                        whiteSpace: "nowrap",
+                        boxShadow:
+                          "0 0 28px rgba(245,194,85,0.45), 0 0 60px rgba(229,138,64,0.35)",
+                      }}
+                    >
+                      BOOK A CONSULTATION
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
+import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
 
 export default function Footer() {
   // Original: footer with brand summary, nav, contact, and legal columns.
@@ -80,7 +81,9 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#start-now"
+                  href={CALENDLY_CONSULTATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-ash-gray hover:text-phoenix-gold transition-colors"
                 >
                   Start Now
