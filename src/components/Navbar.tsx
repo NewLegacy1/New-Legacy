@@ -79,7 +79,7 @@ export default function Navbar() {
             href="https://crm-kjw72gfn0-new-legacys-projects.vercel.app/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:block font-syne text-sm tracking-wider transition-colors duration-300 bg-gradient-phoenix text-charcoal px-6 py-2 rounded-full hover:opacity-90 ml-4"
+            className="hidden md:block font-syne text-sm tracking-wider transition-colors duration-300 gradient-text hover:opacity-80 ml-4"
           >
             LOGIN
           </a>
@@ -149,7 +149,7 @@ export default function Navbar() {
             href="https://crm-kjw72gfn0-new-legacys-projects.vercel.app/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-syne text-xl tracking-wider transition-colors duration-300 bg-gradient-phoenix text-charcoal px-8 py-3 rounded-full hover:opacity-90"
+            className="font-syne text-xl tracking-wider transition-colors duration-300 gradient-text hover:opacity-80"
             onClick={() => setMenuOpen(false)}
           >
             LOGIN
