@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./custom.css";
+import { LeadCaptureProvider } from "@/components/LeadCaptureProvider";
 
 export const metadata: Metadata = {
   title: "New Legacy AI | Custom AI Agents for Business Automation",
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-charcoal" style={{ backgroundColor: "#0f0f0f" }}>
-        {children}
+        <LeadCaptureProvider>{children}</LeadCaptureProvider>
       </body>
     </html>
   );

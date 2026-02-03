@@ -2,22 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
-
-const navItems = [
-  { name: "SERVICES", href: "#services" },
-  { name: "WORK", href: "#clients" },
-  { name: "ABOUT", href: "#why-us" },
-  {
-    name: "CONTACT",
-    href: CALENDLY_CONSULTATION_URL,
-    isButton: true,
-  },
-];
+import { useLeadCapture } from "@/components/LeadCaptureProvider";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openLeadForm } = useLeadCapture();
+
+  const navItems: Array<{
+    name: string;
+    href?: string;
+    isButton?: boolean;
+    onClick?: () => void;
+  }> = [
+    { name: "SERVICES", href: "#services" },
+    { name: "WORK", href: "#clients" },
+    { name: "ABOUT", href: "#why-us" },
+    { name: "CONTACT", isButton: true, onClick: openLeadForm },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,19 +46,32 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center justify-center flex-grow gap-8">
             {navItems.map((item) => (
-              <a
-                key={`${item.name}-${item.href}`}
-                href={item.href}
-                target={item.isButton ? "_blank" : undefined}
-                rel={item.isButton ? "noopener noreferrer" : undefined}
-                className={`font-syne text-sm tracking-wider transition-colors duration-300 ${
-                  item.isButton
-                    ? "bg-gradient-phoenix text-charcoal px-6 py-2 rounded-full hover:opacity-90"
-                    : "hover:text-phoenix-gold"
-                }`}
-              >
-                {item.name}
-              </a>
+              item.onClick ? (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={item.onClick}
+                  className={`font-syne text-sm tracking-wider transition-colors duration-300 ${
+                    item.isButton
+                      ? "bg-gradient-phoenix text-charcoal px-6 py-2 rounded-full hover:opacity-90"
+                      : "hover:text-phoenix-gold"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <a
+                  key={`${item.name}-${item.href}`}
+                  href={item.href}
+                  className={`font-syne text-sm tracking-wider transition-colors duration-300 ${
+                    item.isButton
+                      ? "bg-gradient-phoenix text-charcoal px-6 py-2 rounded-full hover:opacity-90"
+                      : "hover:text-phoenix-gold"
+                  }`}
+                >
+                  {item.name}
+                </a>
+              )
             ))}
           </div>
 
@@ -90,20 +105,36 @@ export default function Navbar() {
       <div className={`mobile-menu ${menuOpen ? "visible" : "hidden"}`}>
         <div className="flex flex-col items-center space-y-8">
           {navItems.map((item) => (
-            <a
-              key={`${item.name}-${item.href}`}
-              href={item.href}
-              target={item.isButton ? "_blank" : undefined}
-              rel={item.isButton ? "noopener noreferrer" : undefined}
-              className={`font-syne text-xl tracking-wider transition-colors duration-300 ${
-                item.isButton
-                  ? "bg-gradient-phoenix text-charcoal px-8 py-3 rounded-full hover:opacity-90"
-                  : "hover:text-phoenix-gold"
-              }`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.name}
-            </a>
+            item.onClick ? (
+              <button
+                key={item.name}
+                type="button"
+                className={`font-syne text-xl tracking-wider transition-colors duration-300 ${
+                  item.isButton
+                    ? "bg-gradient-phoenix text-charcoal px-8 py-3 rounded-full hover:opacity-90"
+                    : "hover:text-phoenix-gold"
+                }`}
+                onClick={() => {
+                  setMenuOpen(false);
+                  item.onClick?.();
+                }}
+              >
+                {item.name}
+              </button>
+            ) : (
+              <a
+                key={`${item.name}-${item.href}`}
+                href={item.href}
+                className={`font-syne text-xl tracking-wider transition-colors duration-300 ${
+                  item.isButton
+                    ? "bg-gradient-phoenix text-charcoal px-8 py-3 rounded-full hover:opacity-90"
+                    : "hover:text-phoenix-gold"
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            )
           ))}
         </div>
       </div>
