@@ -131,9 +131,13 @@ export default function Navbar() {
               <a
                 key={`${item.name}-${item.href}`}
                 href={item.href}
+                target={item.isGradientText ? "_blank" : undefined}
+                rel={item.isGradientText ? "noopener noreferrer" : undefined}
                 className={`font-syne text-xl tracking-wider transition-colors duration-300 ${
                   item.isButton
                     ? "bg-gradient-phoenix text-charcoal px-8 py-3 rounded-full hover:opacity-90"
+                    : item.isGradientText
+                    ? "gradient-text hover:opacity-80"
                     : "hover:text-phoenix-gold"
                 }`}
                 onClick={() => setMenuOpen(false)}
@@ -142,15 +146,6 @@ export default function Navbar() {
               </a>
             )
           ))}
-          <a
-            href="https://crm-mauve-six.vercel.app/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-syne text-xl tracking-wider transition-colors duration-300 gradient-text hover:opacity-80"
-            onClick={() => setMenuOpen(false)}
-          >
-            LOGIN
-          </a>
         </div>
       </div>
     </>
