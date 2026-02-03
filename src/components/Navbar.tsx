@@ -14,11 +14,13 @@ export default function Navbar() {
     href?: string;
     isButton?: boolean;
     onClick?: () => void;
+    isGradientText?: boolean;
   }> = [
     { name: "SERVICES", href: "#services" },
     { name: "WORK", href: "#clients" },
     { name: "ABOUT", href: "#why-us" },
     { name: "CONTACT", isButton: true, onClick: openLeadForm },
+    { name: "LOGIN", href: "https://crm-mauve-six.vercel.app/login", isGradientText: true },
   ];
 
   useEffect(() => {
@@ -63,9 +65,13 @@ export default function Navbar() {
                 <a
                   key={`${item.name}-${item.href}`}
                   href={item.href}
+                  target={item.isGradientText ? "_blank" : undefined}
+                  rel={item.isGradientText ? "noopener noreferrer" : undefined}
                   className={`font-syne text-sm tracking-wider transition-colors duration-300 ${
                     item.isButton
                       ? "bg-gradient-phoenix text-charcoal px-6 py-2 rounded-full hover:opacity-90"
+                      : item.isGradientText
+                      ? "gradient-text hover:opacity-80"
                       : "hover:text-phoenix-gold"
                   }`}
                 >
@@ -74,15 +80,6 @@ export default function Navbar() {
               )
             ))}
           </div>
-
-          <a
-            href="https://crm-mauve-six.vercel.app/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block font-syne text-sm tracking-wider transition-colors duration-300 gradient-text hover:opacity-80 ml-4"
-          >
-            LOGIN
-          </a>
 
           <button
             className="md:hidden text-pure-white ml-auto focus:outline-none"
