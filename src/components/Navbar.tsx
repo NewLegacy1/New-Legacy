@@ -2,17 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
 
 const navItems = [
   { name: "SERVICES", href: "#services" },
-  { name: "PROCESS", href: "#automation" },
   { name: "WORK", href: "#clients" },
   { name: "ABOUT", href: "#why-us" },
-  { name: "INTAKE", href: "/intake" },
-  { name: "CONTACT", href: "#case-studies" },
   {
     name: "CONTACT",
-    href: "https://api.leadconnectorhq.com/widget/booking/LVNlkCPBjoVt8iwDpZUR",
+    href: CALENDLY_CONSULTATION_URL,
     isButton: true,
   },
 ];
@@ -72,15 +70,24 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div className={`mobile-menu ${menuOpen ? "visible" : "hidden"}`}>
+      {menuOpen ? (
         <button
           type="button"
           aria-label="Close menu"
-          className="absolute right-6 top-6 rounded-full border border-ash-gray/20 bg-charcoal/70 p-3 text-pure-white hover:border-phoenix-gold/40"
+          className="rounded-full border border-ash-gray/20 bg-charcoal/70 p-3 text-pure-white hover:border-phoenix-gold/40"
+          style={{
+            position: "fixed",
+            top: 24,
+            right: 24,
+            zIndex: 2147483647,
+          }}
           onClick={() => setMenuOpen(false)}
         >
           <X size={24} />
         </button>
+      ) : null}
+
+      <div className={`mobile-menu ${menuOpen ? "visible" : "hidden"}`}>
         <div className="flex flex-col items-center space-y-8">
           {navItems.map((item) => (
             <a

@@ -46,6 +46,30 @@ const timezones = [
   "Pacific/Honolulu",
 ].map((tz) => ({ value: tz, label: tz.replace("_", " ") }));
 
+function HomeLogoLink() {
+  return (
+    <a
+      href="/"
+      aria-label="Back to home"
+      style={{
+        position: "absolute",
+        top: 20,
+        left: 20,
+        zIndex: 50,
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src="/new-legacy-logo.png"
+        alt="New Legacy AI"
+        style={{ width: 64, height: 64 }}
+      />
+    </a>
+  );
+}
+
 function ProgressDots({ currentIndex }: { currentIndex: number }) {
   return (
     <div className="mt-6 grid gap-3 sm:grid-cols-6">
@@ -80,6 +104,16 @@ export default function IntakePage() {
     | { status: "idle" }
     | { status: "submitting" }
     | { status: "success"; intakeId: string }
+    | { status: "error"; message: string }
+  >({ status: "idle" });
+  const [logoUpload, setLogoUpload] = React.useState<
+    | { status: "idle" }
+    | { status: "uploading" }
+    | { status: "error"; message: string }
+  >({ status: "idle" });
+  const [portfolioUpload, setPortfolioUpload] = React.useState<
+    | { status: "idle" }
+    | { status: "uploading"; current: number; total: number }
     | { status: "error"; message: string }
   >({ status: "idle" });
 
@@ -146,6 +180,52 @@ export default function IntakePage() {
     setStep(steps[Math.max(currentIndex - 1, 0)].key);
   };
 
+  const uploadLogo = async (file: File) => {
+    setLogoUpload({ status: "uploading" });
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/upload/logo", { method: "POST", body: fd });
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(data?.message ?? data?.error ?? "Upload failed");
+      }
+      form.setValue("logoUrl", String(data?.url ?? data?.path ?? ""));
+      setLogoUpload({ status: "idle" });
+    } catch (e) {
+      setLogoUpload({
+        status: "error",
+        message: e instanceof Error ? e.message : "Upload failed",
+      });
+    }
+  };
+
+  const uploadPortfolio = async (files: File[]) => {
+    setPortfolioUpload({ status: "uploading", current: 0, total: files.length });
+    const urls: string[] = [];
+    try {
+      for (let i = 0; i < files.length; i += 1) {
+        setPortfolioUpload({ status: "uploading", current: i + 1, total: files.length });
+        const fd = new FormData();
+        fd.append("file", files[i]);
+        const res = await fetch("/api/upload/portfolio", { method: "POST", body: fd });
+        const data = await res.json().catch(() => null);
+        if (!res.ok) {
+          throw new Error(data?.message ?? data?.error ?? "Upload failed");
+        }
+        const url = String(data?.url ?? "");
+        if (url) urls.push(url);
+      }
+      form.setValue("portfolioUrls", urls);
+      setPortfolioUpload({ status: "idle" });
+    } catch (e) {
+      setPortfolioUpload({
+        status: "error",
+        message: e instanceof Error ? e.message : "Upload failed",
+      });
+    }
+  };
+
   const onSubmit = async (values: IntakeInput) => {
     setSubmitState({ status: "submitting" });
     try {
@@ -170,6 +250,9 @@ export default function IntakePage() {
   if (submitState.status === "success") {
     return (
       <div className="min-h-screen bg-charcoal text-pure-white">
+        <div style={{ position: "relative" }}>
+          <HomeLogoLink />
+        </div>
         <div className="container mx-auto px-4 pb-24 pt-32">
           <Card className="mx-auto max-w-3xl">
             <CardHeader>
@@ -220,6 +303,7 @@ export default function IntakePage() {
   return (
     <div className="min-h-screen bg-charcoal text-pure-white">
       <div className="relative isolate overflow-hidden">
+        <HomeLogoLink />
         <div className="pointer-events-none absolute -top-24 right-0 h-1/2 w-1/2 rounded-full bg-phoenix-gold/10 blur-[150px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-1/3 w-1/2 rounded-full bg-sunset-orange/10 blur-[150px]" />
 
@@ -547,21 +631,26 @@ export default function IntakePage() {
 
                         <div className="space-y-2">
                           <FormLabel>Logo upload (optional)</FormLabel>
-                          <Alert variant="warning">
-                            Uploads are not configured yet. We’ll store a
-                            placeholder filename. (We can add UploadThing or
-                            Vercel Blob later.)
-                          </Alert>
+                          {logoUpload.status === "error" ? (
+                            <Alert variant="error">{logoUpload.message}</Alert>
+                          ) : (
+                            <Alert variant="info">
+                              Uploads are stored in Supabase Storage.
+                            </Alert>
+                          )}
                           <input
                             type="file"
                             accept="image/*,.svg"
                             onChange={(e) => {
                               const file = e.target.files?.[0];
                               if (!file) return;
-                              form.setValue("logoUrl", `placeholder://${file.name}`);
+                              void uploadLogo(file);
                             }}
                             className="text-sm text-ash-gray"
                           />
+                          {logoUpload.status === "uploading" ? (
+                            <p className="text-xs text-ash-gray">Uploading…</p>
+                          ) : null}
                           {form.watch("logoUrl") ? (
                             <p className="text-xs text-ash-gray">
                               Saved:{" "}
@@ -672,10 +761,13 @@ export default function IntakePage() {
 
                         <div className="space-y-2">
                           <FormLabel>Photos / portfolio (optional)</FormLabel>
-                          <Alert variant="warning">
-                            Uploads are not configured yet. We’ll store
-                            placeholder filenames.
-                          </Alert>
+                          {portfolioUpload.status === "error" ? (
+                            <Alert variant="error">{portfolioUpload.message}</Alert>
+                          ) : (
+                            <Alert variant="info">
+                              Uploads are stored in Supabase Storage.
+                            </Alert>
+                          )}
                           <input
                             type="file"
                             accept="image/*"
@@ -683,13 +775,15 @@ export default function IntakePage() {
                             onChange={(e) => {
                               const files = Array.from(e.target.files ?? []);
                               if (files.length === 0) return;
-                              form.setValue(
-                                "portfolioUrls",
-                                files.map((f) => `placeholder://${f.name}`)
-                              );
+                              void uploadPortfolio(files);
                             }}
                             className="text-sm text-ash-gray"
                           />
+                          {portfolioUpload.status === "uploading" ? (
+                            <p className="text-xs text-ash-gray">
+                              Uploading {portfolioUpload.current}/{portfolioUpload.total}…
+                            </p>
+                          ) : null}
                           {form.watch("portfolioUrls")?.length ? (
                             <ul className="mt-2 space-y-1 text-xs text-ash-gray">
                               {form.watch("portfolioUrls").map((u) => (

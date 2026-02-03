@@ -2,6 +2,7 @@
 
 import { ArrowUp } from "lucide-react";
 import { useInView } from "@/components/useInView";
+import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
 
 export default function StartNow() {
   const { ref, inView } = useInView<HTMLDivElement>({
@@ -30,7 +31,12 @@ export default function StartNow() {
               If your website looks good but your systems feel messy, we can
               fix both — and make everything measurable.
             </p>
-            <a href="/checkout" className="btn-primary inline-flex items-center">
+            <a
+              href={CALENDLY_CONSULTATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center"
+            >
               BOOK A CONSULTATION
             </a>
 

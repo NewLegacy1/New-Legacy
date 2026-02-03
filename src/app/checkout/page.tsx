@@ -55,6 +55,30 @@ const websitePricing = { setup: 397, monthly: 19 };
 
 const currency = (amount: number) => `$${amount.toFixed(0)}`;
 
+function HomeLogoLink() {
+  return (
+    <a
+      href="/"
+      aria-label="Back to home"
+      style={{
+        position: "absolute",
+        top: 20,
+        left: 20,
+        zIndex: 50,
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src="/new-legacy-logo.png"
+        alt="New Legacy AI"
+        style={{ width: 64, height: 64 }}
+      />
+    </a>
+  );
+}
+
 export default function CheckoutPage() {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>("bundle");
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
@@ -101,6 +125,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-charcoal text-pure-white">
       <div className="relative isolate overflow-hidden">
+        <HomeLogoLink />
         <div className="pointer-events-none absolute -top-24 right-0 h-1/2 w-1/2 rounded-full bg-phoenix-gold/10 blur-[150px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-1/3 w-1/2 rounded-full bg-sunset-orange/10 blur-[150px]" />
         <div className="container mx-auto px-4 pb-24 pt-32">

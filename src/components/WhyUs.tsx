@@ -2,6 +2,7 @@
 
 import { ArrowRight, CheckCircle, Sparkles } from "lucide-react";
 import { useInView } from "@/components/useInView";
+import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
 
 const valueProps = [
   {
@@ -65,7 +66,7 @@ export default function WhyUs() {
                   going next.
                 </p>
                 <a
-                  href="https://api.leadconnectorhq.com/widget/booking/LVNlkCPBjoVt8iwDpZUR"
+                  href={CALENDLY_CONSULTATION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-phoenix-gold font-syne font-bold group"

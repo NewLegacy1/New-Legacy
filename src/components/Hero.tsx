@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
 
 export default function Hero() {
   // Original: #home hero section with headline, subhead, CTAs, and feature card.
@@ -38,7 +39,12 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <a href="/checkout" className="btn-primary">
+              <a
+                href={CALENDLY_CONSULTATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
                 BOOK A CONSULTATION
               </a>
               <a

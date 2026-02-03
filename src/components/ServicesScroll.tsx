@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { CALENDLY_CONSULTATION_URL } from "@/lib/links";
 
 const SERVICES = [
   {
@@ -221,7 +222,9 @@ export default function ServicesScroll() {
                           }}
                         />
                         <a
-                          href="/checkout"
+                          href={CALENDLY_CONSULTATION_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="btn-secondary inline-flex items-center relative z-10"
                           style={{
                             boxShadow:
