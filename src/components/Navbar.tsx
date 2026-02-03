@@ -75,6 +75,15 @@ export default function Navbar() {
             ))}
           </div>
 
+          <a
+            href="https://crm-kjw72gfn0-new-legacys-projects.vercel.app/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:block font-syne text-sm tracking-wider transition-colors duration-300 hover:text-phoenix-gold ml-4"
+          >
+            LOGIN
+          </a>
+
           <button
             className="md:hidden text-pure-white ml-auto focus:outline-none"
             onClick={() => setMenuOpen((prev) => !prev)}
@@ -136,6 +145,15 @@ export default function Navbar() {
               </a>
             )
           ))}
+          <a
+            href="https://crm-kjw72gfn0-new-legacys-projects.vercel.app/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-syne text-xl tracking-wider transition-colors duration-300 hover:text-phoenix-gold"
+            onClick={() => setMenuOpen(false)}
+          >
+            LOGIN
+          </a>
         </div>
       </div>
     </>
