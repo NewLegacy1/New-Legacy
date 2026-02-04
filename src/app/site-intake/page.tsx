@@ -229,7 +229,7 @@ export default function IntakePage() {
   const onSubmit = async (values: IntakeInput) => {
     setSubmitState({ status: "submitting" });
     try {
-      const res = await fetch("/api/intake", {
+      const res = await fetch("/api/site-intake", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
