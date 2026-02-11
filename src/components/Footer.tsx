@@ -19,8 +19,7 @@ export default function Footer() {
               <span className="font-syne font-bold text-xl">NEW LEGACY AI</span>
             </div>
             <p className="text-ash-gray mb-6">
-              Custom websites, backend systems, CRM workflows, and analytics —
-              built to scale.
+              Custom websites, CRMs + automations, and growth operations — built to scale.
             </p>
             <div className="flex space-x-4">
               <a

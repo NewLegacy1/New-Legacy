@@ -17,24 +17,24 @@ const SERVICES = [
     imageSrc: null,
   },
   {
-    title: "CRM Workflows",
+    title: "Custom CRMs & Automations",
     body:
-      "CRM setup and automations that capture leads, route them correctly, and keep follow-up consistent.",
+      "Custom CRM builds and automations that capture leads, route them correctly, and keep follow-up consistent — plus the integrations and backend logic that keep everything connected.",
     bullets: [
       "Pipelines and lifecycle stages",
-      "Email/SMS automations",
-      "Lead routing and tagging",
+      "Email/SMS automations + lead routing",
+      "Integrations, dashboards, and reporting",
     ],
     imageSrc: "/crm%20img.png",
   },
   {
-    title: "Backend Systems",
+    title: "Growth Operations for Creators",
     body:
-      "APIs, integrations, and backend logic that keep operations smooth, with reporting that turns data into decisions.",
+      "Growth systems built for conversion — offer clarity, funnels, follow-up and booking — live in 7 days and scaled through aligned incentives.",
     bullets: [
-      "Databases, APIs, and data pipelines",
-      "Third-party integrations",
-      "Dashboards and reporting views",
+      "Offer clarity",
+      "Funnels, follow-up, and booking",
+      "Live in 7 days; scaled through aligned incentives",
     ],
     imageSrc: null,
   },

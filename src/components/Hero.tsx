@@ -29,8 +29,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Custom websites, backend systems, CRM workflows, and analytics —
-              built to keep your business scalable and easy to run.
+              Custom websites, CRMs + automations, and growth operations — built
+              to keep your business scalable and easy to run.
             </motion.p>
 
             <motion.div
@@ -78,21 +78,21 @@ export default function Hero() {
                     <div className="w-8 h-8 rounded-full bg-phoenix-gold flex items-center justify-center text-charcoal font-bold">
                       2
                     </div>
-                    <div className="text-pure-white">Backend Systems</div>
+                    <div className="text-pure-white">Custom CRMs & Automations</div>
                     <div className="ml-auto w-4 h-4 rounded-full bg-sunset-orange" />
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-phoenix-gold flex items-center justify-center text-charcoal font-bold">
                       3
                     </div>
-                    <div className="text-pure-white">CRM Workflows</div>
+                    <div className="text-pure-white">Growth Operations for Creators</div>
                     <div className="ml-auto w-4 h-4 rounded-full bg-sunset-orange" />
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-phoenix-gold flex items-center justify-center text-charcoal font-bold">
                       4
                     </div>
-                    <div className="text-pure-white">Analytics Dashboards</div>
+                    <div className="text-pure-white">Custom App Solutions</div>
                     <div className="ml-auto w-4 h-4 rounded-full bg-sunset-orange" />
                   </div>
                 </div>

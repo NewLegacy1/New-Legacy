@@ -27,8 +27,8 @@ export function useLeadCapture() {
 
 const SERVICE_OPTIONS = [
   "Custom Websites",
-  "CRM Workflows",
-  "Backend Systems",
+  "Custom CRMs & Automations",
+  "Growth Operations for Creators",
   "Custom App Solutions",
   "Automation / AI Agents",
   "Not sure yet",

@@ -51,23 +51,23 @@ export default function Automation() {
     },
     {
       icon: <MessageSquare size={24} />,
-      title: "BACKEND SYSTEMS & INTEGRATIONS",
+      title: "CUSTOM CRMS & AUTOMATIONS",
       description:
-        "APIs, data pipelines, and integrations that keep everything connected.",
+        "CRM builds and automations that capture leads, route them correctly, and keep follow-up consistent.",
       delay: 200,
     },
     {
       icon: <Search size={24} />,
-      title: "CRM SETUP & AUTOMATION",
+      title: "GROWTH OPERATIONS FOR CREATORS",
       description:
-        "CRM configuration, workflows, and handoffs that keep teams aligned.",
+        "Growth systems built for conversion — offer clarity, funnels, follow-up and booking — live in 7 days and scaled through aligned incentives.",
       delay: 300,
     },
     {
       icon: <Calendar size={24} />,
-      title: "REPORTING & ANALYTICS DASHBOARDS",
+      title: "CUSTOM APP SOLUTIONS",
       description:
-        "Dashboards and reporting that turn data into clear decisions.",
+        "Purpose-built apps that streamline workflows, eliminate manual work, and scale with your team.",
       delay: 400,
     },
   ];
@@ -90,9 +90,7 @@ export default function Automation() {
             <span className="gradient-text">GROWTH.</span>
           </h2>
           <p className="text-ash-gray text-lg md:text-xl">
-            We design and implement the systems that keep your business running
-            smoothly — from websites to backend logic, CRM workflows, and
-            analytics.
+            We design and implement the systems that keep your business running smoothly — from websites to CRMs + automations and growth operations.
           </p>
         </div>
 
