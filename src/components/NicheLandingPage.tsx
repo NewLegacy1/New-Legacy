@@ -73,7 +73,7 @@ export default function NicheLandingPage({ config }: NicheLandingPageProps) {
       <section id="home" className="flex items-center pt-20 pb-16 md:pb-20 relative">
         <div className="absolute right-0 top-1/4 w-1/2 h-1/2 bg-phoenix-gold/5 rounded-full blur-[100px] -z-10" />
         <div className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <h1
               ref={heroRef.ref}
               className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl leading-tight transition-all duration-700 ${
@@ -87,7 +87,7 @@ export default function NicheLandingPage({ config }: NicheLandingPageProps) {
               {headlineParts[1]}
             </h1>
             <p
-              className={`text-xl md:text-2xl text-ash-gray font-light max-w-2xl mt-6 mb-12 transition-all duration-700 delay-200 ${
+              className={`text-xl sm:text-2xl text-ash-gray font-light max-w-2xl mx-auto mt-6 mb-12 transition-all duration-700 delay-200 ${
                 heroRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: "200ms" }}
@@ -201,19 +201,19 @@ export default function NicheLandingPage({ config }: NicheLandingPageProps) {
               <p className="text-ash-gray text-base sm:text-lg md:text-xl mb-10 max-w-2xl mx-auto">
                 Let&apos;s talk about your systems — and how we can make them work for you.
               </p>
-              <div className="relative flex items-center justify-center mt-6 mb-8">
+              <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 mb-12 sm:mb-8">
                 <a
                   href={CALENDLY_CONSULTATION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary inline-flex items-center mt-6 mb-6"
+                  className="btn-primary inline-flex items-center"
                 >
                   BOOK A CONSULTATION
                 </a>
                 <button
                   type="button"
                   onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-phoenix-gold/20 flex items-center justify-center hover:bg-phoenix-gold/30 transition-colors"
+                  className="sm:absolute sm:right-4 sm:top-1/2 sm:-translate-y-1/2 w-10 h-10 rounded-full bg-phoenix-gold/20 flex items-center justify-center hover:bg-phoenix-gold/30 transition-colors shrink-0"
                   aria-label="Back to top"
                 >
                   <ArrowUp className="text-phoenix-gold" size={20} />
