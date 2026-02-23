@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+model IntakeSubmission {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+
+  name         String
+  businessName String
+  email        String
+  phone        String
+  timezone     String
+
+  // Full payload (for flexible iteration; safe to evolve)
+  payload      Json
+
+  @@map("intake_submissions")
+}
+

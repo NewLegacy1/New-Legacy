@@ -1,0 +1,34 @@
+{
+  "name": "new-legacy-ai-next",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev --turbo",
+    "dev:webpack": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@prisma/client": "^6.19.2",
+    "@supabase/supabase-js": "^2.93.3",
+    "framer-motion": "11.0.18",
+    "lucide-react": "0.344.0",
+    "next": "14.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.71.1",
+    "resend": "^6.9.1",
+    "stripe": "^20.3.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.66",
+    "@types/react-dom": "18.2.22",
+    "prisma": "^6.19.2",
+    "typescript": "5.4.5"
+  }
+}
